@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import es.uco.pw.demo.model.Student;
 import es.uco.pw.demo.model.StudentRepository;
 import es.uco.pw.demo.model.StudentType;
