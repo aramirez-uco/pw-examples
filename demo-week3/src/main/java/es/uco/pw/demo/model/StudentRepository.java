@@ -72,7 +72,6 @@ public class StudentRepository {
             return null;
         }
     }
-
             
     private Student mapRowToStudent(ResultSet row){
         try{
@@ -94,6 +93,63 @@ public class StudentRepository {
             System.err.println("Unable to retrieve results from the database");
             exception.printStackTrace();
             return null;
+        }
+    }
+
+    public List<Student> findStudentsByType(StudentType type){
+        try{
+            //String query = "SELECT id, name, surname, birthDate FROM Student WHERE type=?;";
+            String query = sqlQueries.getProperty("select-findStudentByType");
+            if(query != null){
+                List<Student> result = jdbcTemplate.query(query, new RowMapper<Student>(){
+                public Student mapRow(ResultSet rs, int rowNumber) throws SQLException{
+                    return new Student(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("surname"),
+                        Date.valueOf(rs.getString("birthdate")).toLocalDate(),
+                        type);
+                    };
+                }, type.toString());
+                return result;
+            }
+            else
+                return null;    
+        }catch(DataAccessException exception){
+            System.err.println("Unable to find student with type=" + type.toString());
+            exception.printStackTrace();
+            return null;
+        }
+    }
+
+    public int getNumberStudentsByType(StudentType type){
+        //String query = "SELECT id, name, surname, birthDate FROM Student WHERE type=?;";
+        String query = sqlQueries.getProperty("select-findStudentByType");
+        if(query != null){
+            try{
+                int result = jdbcTemplate.query(query, this::countRowsStudentType, type.toString());
+                return result;
+            }catch(DataAccessException exception){
+                System.err.println("Unable to find student with type=" + type.toString());
+                exception.printStackTrace();
+                return -1;
+            }
+        }
+        else
+         return -1;
+    }
+
+    private int countRowsStudentType(ResultSet row){
+        try{
+            int numberOfStudents = 0;
+            while(row.next()){
+                numberOfStudents++;
+            }
+            return numberOfStudents;                   
+        } catch (SQLException exception) {
+            System.err.println("Unable to retrieve results from the database");
+            exception.printStackTrace();
+            return -1;
         }
     }
 
@@ -135,7 +191,3 @@ public class StudentRepository {
         }
     }
 }
-
-
-
-            

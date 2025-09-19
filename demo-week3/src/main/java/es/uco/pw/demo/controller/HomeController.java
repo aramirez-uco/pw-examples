@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import es.uco.pw.demo.model.Student;
 import es.uco.pw.demo.model.StudentRepository;
 import es.uco.pw.demo.model.StudentType;
@@ -48,6 +49,17 @@ public class HomeController {
                 "\n\tBirth date: " + insertedStudent.getBirthDate().toString() + 
                 "\n\tType: " + insertedStudent.getType().toString());
         }
+
+        // Find students by type
+        List<Student> erasmusStudents = studentRepository.findStudentsByType(StudentType.ERASMUS);
+        if(erasmusStudents!=null){
+            System.out.println("List of Erasmus students:");
+            erasmusStudents.forEach((s) -> System.out.println("\tName: " + s.getName() + " Surname: " + s.getSurname()));
+        }
+
+        // Count students by type
+        int numberOfPartialStudents = studentRepository.getNumberStudentsByType(StudentType.PARTIAL_TIME);
+        System.out.println("Number of partial-time students: " + numberOfPartialStudents);
 
         return new String("home");
     }
