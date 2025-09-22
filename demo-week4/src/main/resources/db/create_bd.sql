@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS `Student`;
 DROP TABLE IF EXISTS `Course`;
 DROP TABLE IF EXISTS `Professor`;
+DROP TABLE IF EXISTS `StudentCourse`;
 
 CREATE TABLE IF NOT EXISTS `Student` (
   `id` int(11) NOT NULL,
