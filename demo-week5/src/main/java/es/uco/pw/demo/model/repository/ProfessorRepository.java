@@ -1,6 +1,5 @@
 package es.uco.pw.demo.model.repository;
 
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -9,9 +8,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import es.uco.pw.demo.model.domain.Professor;
-import es.uco.pw.demo.model.domain.Student;
-import es.uco.pw.demo.model.domain.StudentType;
-
 
 @Repository
 public class ProfessorRepository extends AbstractRepository{
