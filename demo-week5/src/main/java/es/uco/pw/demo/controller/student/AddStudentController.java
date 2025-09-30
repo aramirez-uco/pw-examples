@@ -30,13 +30,13 @@ public class AddStudentController {
     }
 
     @PostMapping("/addStudent")
-    public String addStudent(@ModelAttribute Student newStudent) {
+    public ModelAndView addStudent(@ModelAttribute Student newStudent) {
         
         String nextPage;
         Integer idStudent = studentRepository.getStudentIdIfExists(newStudent.getName(), newStudent.getSurname());
         if(idStudent != -1){
             newStudent.setId(idStudent);
-            nextPage = "addStudentViewFail.html?studentId=" + newStudent.getId();
+            nextPage = "addStudentViewFail.html";
         }
         
         else{
@@ -44,11 +44,14 @@ public class AddStudentController {
             newStudent.setId(nextId);
             boolean success = studentRepository.addStudent(newStudent);
             if(success){
-                nextPage = "addStudentViewSucess.html?studentId=" + newStudent.getId();
+                nextPage = "addStudentViewSucess.html";
             }    
-            else
-                nextPage = "addStudentViewFail.html";
+            else{
+                nextPage = "/addStudentViewFail.html";
+            }
         }
-        return new String("redirect:/view/student/" + nextPage);
+        this.modelAndView.setViewName(nextPage);
+        this.modelAndView.addObject("student", newStudent);
+        return this.modelAndView;
     }
 }

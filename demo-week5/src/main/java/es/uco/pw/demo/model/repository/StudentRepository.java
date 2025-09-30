@@ -169,7 +169,7 @@ public class StudentRepository extends AbstractRepository{
             int idFound = jdbcTemplate.queryForObject(query, Integer.class, name, surname);
             return idFound;
         }catch(IncorrectResultSizeDataAccessException | IncorrectResultSetColumnCountException resultException){
-            // If no id is found
+            // If no unique id is found
             return -1;
         }catch(DataAccessException queryException){
             System.err.println("Unable to check student in the database");
