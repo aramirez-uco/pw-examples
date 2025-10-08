@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uco.pw.demo.model.domain.Student;
 import es.uco.pw.demo.model.domain.StudentType;
@@ -21,17 +22,17 @@ public class AddStudentController {
     }
 
     @GetMapping("/addStudent")
-    public String addStudent() {
+    public String addStudent(@RequestParam("name") String name, @RequestParam("surname") String surname) {
         LocalDate date = LocalDate.of(2001, 8, 8);
-        Student student = new Student(8, "Hector", "Hermida", 
+        Student student = new Student(8, name, surname, 
                                         date, StudentType.FULL_TIME);
         boolean success = studentRepository.addStudent(student);
         String nextPage;
         if(success){
-            nextPage = "addStudentViewSucess.html?newStudentId=8";
+            nextPage = "addStudentViewSucess.html";
         }    
         else
             nextPage = "addStudentViewFail.html";
-        return new String("redirect:/view/student/" + nextPage);
+        return nextPage;
     }
 }

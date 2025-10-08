@@ -46,6 +46,6 @@ public class AddProfessorController {
             nextPage = "addProfessorViewFail.html";
         
             sessionStatus.setComplete();
-        return new String("redirect:/view/professor/" + nextPage);
+        return nextPage;
     }
 }
