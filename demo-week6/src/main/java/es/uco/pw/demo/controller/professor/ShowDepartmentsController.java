@@ -23,7 +23,7 @@ public class ShowDepartmentsController {
     }
 
     @GetMapping("/showDepartments")
-    public ModelAndView getAddProfessorView() {
+    public ModelAndView showDepartments() {
         this.modelAndView.setViewName("showDepartmentsView.html");
         String deptNames [] = new String []{"Maths and Statistics", "Computer Science and AI", "Physics"};
         List<Department> listOfDepartments = new ArrayList<Department>();
