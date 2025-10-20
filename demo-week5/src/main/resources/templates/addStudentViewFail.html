@@ -5,7 +5,7 @@
         <title>My first application</title>
         <body>
             <h1>Add student: ERROR :(</h1>
-            <div th:if="${student != null}"></div>
+            <div th:if="${student != null}">
             <p>Student already exists in the database. ID found:</p>
             <p th:text="${student.id}"></p>
             </div>
