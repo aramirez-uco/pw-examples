@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>My first application</title>
+        <body>
+            <h1>Add student: ERROR :(</h1>
+            <div th:if="${student != null}">
+            <p>Student already exists in the database. ID found:</p>
+            <p th:text="${student.id}"></p>
+            </div>
+            <a href="/addStudent">Back to the form</a>
+        </body>
+    </head>
+</html>
+
+

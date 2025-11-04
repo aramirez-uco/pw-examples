@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>My first application</title>
+        <body>
+            <h1>Students</h1>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Birth date</th>
+                    <th>Type</th>
+                </tr>
+                <tr th:each="student : ${listOfStudents}">
+                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.name}"></td>
+                    <td th:text="${student.surname}"></td>
+                    <td th:text="${student.birthDate}"></td>
+                    <td th:text="${student.type}"></td>
+                </tr>
+            </table>
+            <ul >
+            </ul>
+        </body>
+    </head>
+</html>
+
+
+

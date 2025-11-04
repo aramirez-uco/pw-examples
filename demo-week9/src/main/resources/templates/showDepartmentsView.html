@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>My first application</title>
+        <body>
+            <h1>Departments:</h1>
+            <p th:text="'Number of departments: ' + ${listOfDepartments.size}"></p>
+            <ul th:each="dept : ${listOfDepartments}">
+                <li th:text="'Name: ' + ${dept.name} + '  - Num. Professors: ' + ${dept.numProfessors}"></li>
+            </ul>
+        </body>
+    </head>
+</html>

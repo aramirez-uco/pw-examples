@@ -1,0 +1,105 @@
+package es.uco.pw.demo.model.repository;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import es.uco.pw.demo.model.domain.Professor;
+
+@Repository
+public class ProfessorRepository extends AbstractRepository{
+    
+    public ProfessorRepository(JdbcTemplate jdbcTemplate){
+        this.jdbcTemplate = jdbcTemplate;
+    }
+
+    public boolean addProfessor(Professor professor){
+        try{
+            String query = sqlQueries.getProperty("insert-addProfessor");
+            if(query != null){
+                int result = jdbcTemplate.update(query, 
+                professor.getId(),
+                professor.getName(),
+                professor.getSurname(),
+                professor.getDepartment());
+                if (result>0)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+            } catch(DataAccessException exception){
+                System.err.println("Unable to insert professor in the database");
+            return false;
+        }
+    }
+
+    public Professor findProfessorById(int id){
+        try{
+            String query = sqlQueries.getProperty("select-findProfessorById");
+            Professor result = jdbcTemplate.query(query, this::mapRowToProfessor, id);
+            if (result != null)
+                return result;
+            else
+                return null;
+        }catch(DataAccessException exception){
+            System.err.println("Unable to find professor with id=" + id);
+            exception.printStackTrace();
+            return null;
+        }
+    }
+
+    private Professor mapRowToProfessor(ResultSet row){
+        try{
+            if(row.first()){
+                int id = row.getInt("id");
+                String name = row.getString("name");
+                String surname = row.getString("surname");
+                String department = row.getString("department");
+                Professor professor = new Professor(id, name, surname, department);
+                return professor;
+            }
+            else{
+                return null;
+            }
+        } catch (SQLException exception) {
+            System.err.println("Unable to retrieve results from the database");
+            exception.printStackTrace();
+            return null;
+        }
+    }
+
+    public int getNumberProfessorsInDepartment(String deptName){
+        try{
+            String query = sqlQueries.getProperty("select-findProfessorIdByDepartment");
+            Integer numProfessors = jdbcTemplate.query(query, this::countProfessorsInDepartment, deptName);
+            return numProfessors;
+        }catch(DataAccessException exception){
+            System.err.println("Unable to find department=" + deptName);
+            exception.printStackTrace();
+            return -1;
+        }
+    }
+
+    private int countProfessorsInDepartment(ResultSet row){
+        try{
+            int numProfessors = 0;
+            while(row.next()){
+                numProfessors++;
+            }
+            return numProfessors;
+        }catch (SQLException exception) {
+            System.err.println("Unable to retrieve results from the database");
+            exception.printStackTrace();
+            return -1;
+        }
+    }
+}
+
+
+
+            

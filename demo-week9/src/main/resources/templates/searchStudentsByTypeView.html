@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>My first application</title>
+        <body>
+            <h1>Students</h1>
+            <form method="GET" th:action="@{/searchStudentsByType}">
+                <label for="types">Choose type of student:</label>
+                <select name="selectedType">
+                    <option value="FULL_TIME">Full time</option>
+                    <option value="PARTIAL_TIME">Partial time</option>
+                    <option value="ERASMUS">Erasmus</option>
+                </select>
+                <input type="submit" value="Search">              
+            </form>
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Birth date</th>
+                </tr>
+                <tr th:each="student : ${listOfStudents}">
+                    <td th:text="${student.id}"></td>
+                    <td th:text="${student.name}"></td>
+                    <td th:text="${student.surname}"></td>
+                    <td th:text="${student.birthDate}"></td>
+                </tr>
+            </table>
+        </body>
+    </head>
+</html>
+
+
+
