@@ -70,7 +70,7 @@ public class StudentRestController {
     public ResponseEntity<Student> postStudent(@RequestBody Student student) {
         ResponseEntity<Student> response;
         Integer idStudent = studentRepository.getStudentIdIfExists(student.getName(), student.getSurname());
-        if(idStudent !=-1){
+        if(idStudent ==-1){
             if(student.getBirthDate().getYear() > 2009){
                 response = new ResponseEntity<>(student, HttpStatus.UNPROCESSABLE_ENTITY);
             }
@@ -78,10 +78,12 @@ public class StudentRestController {
                 int nextId = studentRepository.findAllStudents().size() + 1;
                 student.setId(nextId);
                 boolean resultOk = studentRepository.addStudent(student);
-                if(resultOk)
+                if(resultOk){
                     response = new ResponseEntity<>(student, HttpStatus.CREATED);
-                else
-                    response = new ResponseEntity<>(student, HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+                else{
+                   response = new ResponseEntity<>(student, HttpStatus.INTERNAL_SERVER_ERROR);
+                }
             }
         }
         else{
