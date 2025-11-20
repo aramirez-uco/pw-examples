@@ -149,4 +149,38 @@ public class CourseRepository extends AbstractRepository{
         }
     }
 
+    public boolean deleteAllCourses(){
+        try{
+            String query = sqlQueries.getProperty("delete-deleteAllCourses");
+            if(query != null){
+                int result = jdbcTemplate.update(query);
+                if (result>0)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }catch(DataAccessException exception){
+            return false;
+        }
+    }
+
+    public boolean deleteCourse(int courseId){
+        try{
+            String query = sqlQueries.getProperty("delete-deleteCourseById");
+            if(query != null){
+                int result = jdbcTemplate.update(query, courseId);
+                if (result>0)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }catch(DataAccessException exception){
+            return false;
+        }
+    }
+
 }      
