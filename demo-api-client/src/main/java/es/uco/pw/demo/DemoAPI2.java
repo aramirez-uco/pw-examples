@@ -88,7 +88,7 @@ public class DemoAPI2 {
 			System.out.println(exception);
 		}
 
-		// Example 3: Delete one course that does not exist
+		// Example 2: Delete a course that does not exist
 		try{
 			System.out.println("==== REQUEST 7: DELETE ONE COURSE (no effect) ====");
 			rest.delete(baseURL + "/courses/{id}", 8);
@@ -96,7 +96,7 @@ public class DemoAPI2 {
 			System.out.println(exception);
 		}
 
-		// Example 4: Delete all courses
+		// Example 3: Delete all courses
 		try{
 			System.out.println("==== REQUEST 8: DELETE ALL COURSES (valid) ====");
 			rest.delete(baseURL + "/courses");
@@ -104,7 +104,7 @@ public class DemoAPI2 {
 			System.out.println(exception);
 		}
 
-		// Example 5: Delete one course that does not exist
+		// Example 4: Delete one course that does not exist
 		try{
 			System.out.println("==== REQUEST 9: DELETE ONE COURSE (no effect) ====");
 			rest.delete(baseURL + "/courses/{id}", 2);
