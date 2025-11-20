@@ -3,13 +3,8 @@ package es.uco.pw.demo.model.repository;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.jdbc.core.RowMapper;
 
 import es.uco.pw.demo.model.domain.Course;
-import es.uco.pw.demo.model.domain.Student;
-import es.uco.pw.demo.model.domain.StudentType;
-
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
