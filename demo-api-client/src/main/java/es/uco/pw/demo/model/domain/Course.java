@@ -1,29 +1,29 @@
 package es.uco.pw.demo.model.domain;
 
 public class Course {
-    private int id;
+    private Integer id;
     private String name;
     private String degree;
-    private int year;
-    private int idProfessor;
+    private Integer year;
+    private Integer idProfessor;
 
     public Course(){
-        this.id = -1;
+        this.id = null;
         this.name = null;
         this.degree = null;
-        this.year = -1;
-        this.idProfessor = -1;
+        this.year = null;
+        this.idProfessor = null;
     }
 
-    public Course(String name, String degree, int year){
-        this.id = -1;
+    public Course(String name, String degree, Integer year){
+        this.id = null;
         this.name = name;
         this.degree = degree;
         this.year = year;
-        this.idProfessor = -1;
+        this.idProfessor = null;
     }
 
-    public Course(String name, String degree, int year, int idProfessor){
+    public Course(String name, String degree, Integer year, Integer idProfessor){
         this.id = -1;
         this.name = name;
         this.degree = degree;
@@ -31,7 +31,7 @@ public class Course {
         this.idProfessor = idProfessor;
     }
 
-    public Course(int id, String name, String degree, int year, int idProfessor){
+    public Course(Integer id, String name, String degree, Integer year, Integer idProfessor){
         this.id = id;
         this.name = name;
         this.degree = degree;
@@ -39,7 +39,7 @@ public class Course {
         this.idProfessor = idProfessor;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -51,15 +51,15 @@ public class Course {
         return degree;
     }
 
-    public int getYear() {
+    public Integer getYear() {
         return year;
     }
 
-    public int getIdProfessor(){
+    public Integer getIdProfessor(){
         return idProfessor;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -71,11 +71,11 @@ public class Course {
         this.degree = degree;
     }
 
-    public void setYear(int year){
+    public void setYear(Integer year){
         this.year = year;
     }
 
-    public void setIdProfessor(int idProfessor){
+    public void setIdProfessor(Integer idProfessor){
         this.idProfessor = idProfessor;
     }
 
