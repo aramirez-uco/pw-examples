@@ -12,7 +12,7 @@ public class DemoAPI2 {
 	public static void main(String[] args) {
 		sendPutRequests();
 		sendPatchRequests();
-		//sendDeleteRequests();
+		sendDeleteRequests();
 	}
 
 	private static void sendPutRequests(){
@@ -55,7 +55,6 @@ public class DemoAPI2 {
 			System.out.println("==== REQUEST 4: PATCH (valid) ====");
 			id = 3;
 			Course course2 = new Course();
-			course2.setYear(-1);
 			course2.setName("Introduction to Software Engineering");
 			course2.setIdProfessor(3);
 			Course response2 = rest.patchForObject(baseURL + "/courses/{id}", course2, Course.class, id);
@@ -77,8 +76,40 @@ public class DemoAPI2 {
 		}
 	}
 
-	/*private static void sendDeleteRequests(){
+	static void sendDeleteRequests(){
 		RestTemplate rest = new RestTemplate();
-		String baseURL = "http://localhost:8080";
-	}*/
+		String baseURL = "http://localhost:8080/api";
+
+		// Example 1: Delete one course
+		try{
+			System.out.println("==== REQUEST 6: DELETE ONE COURSE (valid) ====");
+			rest.delete(baseURL + "/courses/{id}", 1);
+		}catch(RestClientException exception){
+			System.out.println(exception);
+		}
+
+		// Example 3: Delete one course that does not exist
+		try{
+			System.out.println("==== REQUEST 7: DELETE ONE COURSE (no effect) ====");
+			rest.delete(baseURL + "/courses/{id}", 8);
+		}catch(RestClientException exception){
+			System.out.println(exception);
+		}
+
+		// Example 4: Delete all courses
+		try{
+			System.out.println("==== REQUEST 8: DELETE ALL COURSES (valid) ====");
+			rest.delete(baseURL + "/courses");
+		}catch(RestClientException exception){
+			System.out.println(exception);
+		}
+
+		// Example 5: Delete one course that does not exist
+		try{
+			System.out.println("==== REQUEST 9: DELETE ONE COURSE (no effect) ====");
+			rest.delete(baseURL + "/courses/{id}", 2);
+		}catch(RestClientException exception){
+			System.out.println(exception);
+		}
+	}
 }
