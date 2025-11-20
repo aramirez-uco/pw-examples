@@ -113,12 +113,14 @@ public class CourseRepository extends AbstractRepository{
     private Course mapRowToCourse(ResultSet row){
         try{
             if(row.first()){
-                int id = row.getInt("id");
+                Integer id = row.getInt("id");
                 String name = row.getString("name");
                 String degree = row.getString("degree");
-                int year = row.getInt("year");
-                int idProfesssor = row.getInt("idProfessor");
-
+                Integer year = row.getInt("year");
+                Integer idProfesssor = row.getInt("idProfessor");
+                if(idProfesssor == 0){
+                    idProfesssor = null; // Map null to invalid ID
+                }
                 Course course = new Course(id, name, degree, year, idProfesssor);
                 return course;
             }

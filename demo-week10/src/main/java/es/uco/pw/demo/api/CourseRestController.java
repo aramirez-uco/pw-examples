@@ -1,11 +1,9 @@
 package es.uco.pw.demo.api;
 
 import es.uco.pw.demo.model.domain.Course;
-import es.uco.pw.demo.model.domain.Student;
 import es.uco.pw.demo.model.repository.CourseRepository;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -53,7 +51,8 @@ public class CourseRestController {
     
     @PatchMapping(path="/{id}", consumes="application/json")
     public Course patchCourse(@PathVariable int id, @RequestBody Course requestCourse) {
-       try{
+       Course response = requestCourse;
+        try{
             // Get course by id
             Course currentCourse = this.courseRepository.findCourseById(id);
             if(currentCourse != null){
@@ -69,29 +68,23 @@ public class CourseRestController {
                     currentCourse.setDegree(requestCourse.getDegree());
                 }
 
-                if(requestCourse.getYear() != -1){
+                if(requestCourse.getYear() != null){
                     currentCourse.setYear(requestCourse.getYear());
                 }
 
-                if(requestCourse.getIdProfessor() != -1){
+                if(requestCourse.getIdProfessor() != null){
                     currentCourse.setIdProfessor(requestCourse.getIdProfessor());
                 }
 
                 // Save updated resource
                 boolean resultOk = courseRepository.updateCourse(currentCourse);
                 if(resultOk){
-                     return currentCourse;
+                     response = currentCourse;
                 }
-                else{
-                     return requestCourse;
-                }
-            }
-            else{
-                 return requestCourse;
-                
             }
         }catch(Exception e){
              return requestCourse;
         }
+        return response;
     }
 }
