@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>My first application</title>
+        <body>
+            <h1>Add a student</h1>
+            <form method="POST" th:action="@{/addStudent}" th:object="${newStudent}">
+                <input type="hidden" th:field="*{id}">
+                <label for="name">Name:</label><br>
+                <input type="text" th:field="*{name}"><br>
+                <label for="surname">Surname:</label><br>
+                <input type="text" th:field="*{surname}"><br>
+                <label for="birthDate">BirthDate:</label><br>
+                <input type="date" th:field="*{birthDate}"><br>
+                <label for="type">Type:</label>
+                <select th:field="*{type}">
+                    <option value="FULL_TIME">Full time</option>
+                    <option value="PARTIAL_TIME">Partial time</option>
+                    <option value="ERASMUS">Erasmus</option>
+                </select>
+                <input type="submit" value="Submit">
+            </form>
+        </body>
+    </head>
+</html>
+
+

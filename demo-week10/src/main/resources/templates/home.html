@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html   xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>My first application</title>
+    </head>
+    <body>
+            <h1>Welcome to University of Córdoba</h1>
+            <h2>Menu</h2>
+            <h3>Students</h3>
+            <ol>
+                <li><a href="/addStudent">Add a student</a></li>
+                <li><a href="/findStudentById">Find a student</a></li>
+                <li><a href="/showStudents">Show all students</a></li>
+                <li><a href="/searchStudentsByType">Search students by type</a></li>
+            </ol>
+            <h3>Professors</h3>
+            <ol>
+                <li><a href="/addProfessor">Add a professor</a></li>
+                <li><a href="/findProfessorById">Find a professor</a></li>
+                <li><a href="/showDepartments">Show departments</a></li>
+            </ol>
+            <h3>Courses</h3>    
+            <ol>
+                <li><a href="/assignProfessorToCourse">Assign professor to course</a></li>
+                <li><a href="/enrolStudentsInCourse">Enrol students in course</a></li>
+            </ol>
+            <img th:src="@{/images/UCO.png}" />
+        </body>
+</html>
