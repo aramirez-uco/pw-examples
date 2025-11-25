@@ -11,7 +11,7 @@ public class Course {
         this.id = null;
         this.name = null;
         this.degree = null;
-        this.year = -1;
+        this.year = null;
         this.idProfessor = null;
     }
     
@@ -24,7 +24,7 @@ public class Course {
     }
 
     public Course(String name, String degree, Integer year, Integer idProfessor){
-        this.id = -1;
+        this.id = null;
         this.name = name;
         this.degree = degree;
         this.year = year;
