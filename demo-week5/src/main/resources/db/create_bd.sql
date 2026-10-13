@@ -38,6 +38,12 @@ CREATE TABLE IF NOT EXISTS `StudentCourse`(
   CONSTRAINT PK_StudentCourse PRIMARY KEY (`idStudent`, `idCourse`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+ALTER TABLE `StudentCourse`
+ADD FOREIGN KEY (`idStudent`) REFERENCES `Student`(`id`);
+
+ALTER TABLE `StudentCourse`
+ADD FOREIGN KEY (`idCourse`) REFERENCES `Course`(`id`);
+
 
 INSERT INTO `Student` VALUES (1, 'Andrea', 'Aguirre', '2000-01-10', 'FULL_TIME');
 INSERT INTO `Student` VALUES (2, 'Beatriz', 'Benitez', '2000-02-12', 'FULL_TIME');
