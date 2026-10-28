@@ -30,6 +30,10 @@ public class ShowStudentsByTypeController {
             List<Student> listOfStudents = this.studentRepository.findStudentsByType(StudentType.valueOf(selectedType));
             this.modelAndView.addObject("listOfStudents", listOfStudents);
         }
+        /*else{
+            List<Student> listOfStudents = this.studentRepository.findAllStudents();
+            this.modelAndView.addObject("listOfStudents", listOfStudents);
+        }*/
         return this.modelAndView;
     }
 }

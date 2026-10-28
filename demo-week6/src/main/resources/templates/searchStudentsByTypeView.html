@@ -14,7 +14,7 @@
                 </select>
                 <input type="submit" value="Search">              
             </form>
-            <table>
+            <table th:if="${listOfStudents != null}">
                 <tr>
                     <th>ID</th>
                     <th>Name</th>
